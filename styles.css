@@ -85,6 +85,35 @@ form.inquiry button:hover{opacity:.8}
   .clients-grid{grid-template-columns:repeat(2,1fr);gap:28px 20px}
 }
 
+/* Home hero — full-screen image + giant overlay nav list */
+.home-hero{position:relative;height:100vh;width:100%;overflow:hidden;display:flex;align-items:center}
+.home-hero img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.home-nav{position:relative;z-index:1;padding:0 40px;color:#fff;mix-blend-mode:difference}
+.home-nav a{display:block;font-size:clamp(56px,10vw,140px);font-weight:800;line-height:1.05;letter-spacing:-.03em;color:#fff;margin:2px 0}
+.home-nav a:hover{opacity:.85}
+
+/* Brands page — intro row + photo mosaic */
+.brands-page{padding-top:0}
+.brands-intro-row{display:grid;grid-template-columns:1fr 1fr;min-height:70vh;background:#d7d3cf}
+.brands-intro-row .intro-text{padding:120px 48px 48px;display:flex;flex-direction:column;justify-content:center;color:#fff;mix-blend-mode:difference}
+.brands-intro-row .intro-text h1{font-size:clamp(56px,8vw,120px);font-weight:800;letter-spacing:-.03em;line-height:1;margin-bottom:28px}
+.brands-intro-row .intro-text p{font-size:clamp(16px,1.6vw,20px);line-height:1.5;font-weight:700;max-width:560px}
+.brands-intro-row .intro-img{position:relative;overflow:hidden;background:#eee}
+.brands-intro-row .intro-img img{width:100%;height:100%;object-fit:cover}
+
+.brands-mosaic{display:grid;grid-template-columns:repeat(2,1fr);gap:0}
+.brands-mosaic a{display:block;aspect-ratio:1/1;overflow:hidden;background:#f3f3f3;position:relative}
+.brands-mosaic a img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.brands-mosaic a:hover img{transform:scale(1.03)}
+
+@media (max-width:720px){
+  .brands-intro-row{grid-template-columns:1fr;min-height:auto}
+  .brands-intro-row .intro-text{padding:100px 24px 40px}
+  .brands-intro-row .intro-img{aspect-ratio:1/1}
+  .brands-mosaic{grid-template-columns:1fr}
+  .home-nav{padding:0 24px}
+}
+
 /* Footer */
 footer{padding:48px 32px 32px;border-top:1px solid var(--line);text-align:center}
 footer .brand{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
