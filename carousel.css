@@ -1,0 +1,67 @@
+/* ============================================================
+   HERO CAROUSEL — vanilla port of the shadcn/framer component
+   Shared top edge, active card unfurls to full height, graded
+   background, autoplay, keyboard + wheel + drag.
+   ============================================================ */
+.stage{position:relative;height:100vh;min-height:600px;width:100%;overflow:hidden;background:#000;color:#fff;user-select:none;outline:none}
+.stage:focus-visible{box-shadow:inset 0 0 0 1px rgba(255,255,255,.4)}
+
+/* Graded background layer */
+.bg-wrap{position:absolute;inset:0;z-index:0}
+.bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.28);transition:opacity .7s ease,transform 6s linear}
+.bg-img.enter{opacity:0;transform:scale(1.42)}
+.bg-tint-color{position:absolute;inset:0;mix-blend-mode:color;transition:background-color .7s ease}
+.bg-tint-mult{position:absolute;inset:0;opacity:.55;mix-blend-mode:multiply;transition:background-color .7s ease}
+.bg-wash{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.4),transparent 40%,transparent 60%,rgba(0,0,0,.45));z-index:1}
+.bg-grain{position:absolute;inset:0;opacity:.22;mix-blend-mode:overlay;background-size:180px 180px;z-index:1;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* Top bar inside the carousel */
+.carousel-topbar{position:absolute;left:0;right:0;z-index:4;display:flex;align-items:center;justify-content:center;gap:6vw;padding:28px 24px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.carousel-topbar button{background:none;border:0;color:inherit;cursor:pointer;font:inherit;opacity:.9;transition:opacity .2s}
+.carousel-topbar button:hover{opacity:1}
+.carousel-topbar .brandword{font-weight:700;letter-spacing:.08em;font-size:13px}
+
+/* Headline block above the strip */
+.headline{position:absolute;left:0;right:0;top:0;height:50%;display:flex;flex-direction:column;justify-content:flex-end;padding:0 clamp(16px,1.7vw,32px) clamp(16px,2.8vh,28px);z-index:3}
+.headline-row{display:flex;flex-wrap:wrap;align-items:flex-end;gap:16px 6vw;width:100%}
+.title{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:700;line-height:.88;letter-spacing:-.03em;font-size:clamp(32px,6.7vh,88px);margin:0}
+.title span.line{display:block;overflow:hidden}
+.title span.line .inner{display:block;transform:translateY(110%);transition:transform .62s cubic-bezier(.22,1,.36,1)}
+.title.in span.line .inner{transform:translateY(0)}
+.title.in span.line:nth-child(2) .inner{transition-delay:.07s}
+.title.in span.line:nth-child(3) .inner{transition-delay:.14s}
+.credit{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:clamp(9px,1vh,12px);letter-spacing:.14em;text-transform:uppercase;opacity:.8;margin:0}
+.meta{margin-left:auto;display:flex;align-items:flex-end;gap:clamp(16px,5.5vw,48px);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:clamp(9px,1vh,12px);letter-spacing:.14em;text-transform:uppercase;opacity:.8;white-space:nowrap}
+
+/* The filmstrip */
+.strip-wrap{position:absolute;left:0;right:0;top:50%;z-index:2;overflow:hidden}
+.strip{display:flex;align-items:flex-start;gap:var(--gap);cursor:grab;will-change:transform;transition:transform .6s cubic-bezier(.33,1,.68,1)}
+.strip.dragging{cursor:grabbing;transition:none}
+.card{position:relative;flex:0 0 auto;overflow:hidden;background:rgba(255,255,255,.05);height:var(--half);width:var(--card-w);transition:height .5s cubic-bezier(.33,1,.68,1);border:0;padding:0;cursor:pointer}
+.card.active{height:var(--full)}
+.card img{width:100%;height:100%;object-fit:cover;object-position:50% 26%;display:block;pointer-events:none}
+.card .veil{position:absolute;inset:0;background:#000;opacity:.12;transition:opacity .5s ease;pointer-events:none}
+.card.active .veil{opacity:0}
+
+/* Position rail */
+.rail{position:absolute;left:clamp(16px,1.7vw,32px);bottom:clamp(14px,2.2vh,24px);width:clamp(140px,20vw,260px);z-index:4}
+.rail-nums{display:flex;justify-content:space-between;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:clamp(9px,1vh,12px);opacity:.8;font-variant-numeric:tabular-nums}
+.rail-bar{position:relative;margin-top:8px;height:1px;background:rgba(255,255,255,.25)}
+.rail-fill{position:absolute;top:0;bottom:0;background:#fff;transition:left .6s cubic-bezier(.33,1,.68,1)}
+
+/* Project tile grid (projects.html) */
+.projects-page{padding:140px 32px 80px;max-width:1400px;margin:0 auto}
+.projects-page h1{font-size:clamp(44px,6vw,80px);font-weight:800;letter-spacing:-.03em;margin-bottom:48px}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:4px}
+.project-tile{position:relative;display:block;aspect-ratio:4/5;overflow:hidden;background:#111;color:#fff}
+.project-tile img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.project-tile:hover img{transform:scale(1.04)}
+.project-tile .tile-label{position:absolute;left:20px;bottom:20px;right:20px;font-size:14px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;mix-blend-mode:difference;color:#fff}
+.project-tile .tile-count{display:block;font-size:11px;font-weight:500;opacity:.75;margin-top:6px;letter-spacing:.1em}
+
+@media (max-width:720px){
+  .carousel-topbar{padding:20px 16px;gap:12vw}
+  .headline{padding:0 20px 20px}
+  .projects-page{padding:100px 20px 60px}
+}

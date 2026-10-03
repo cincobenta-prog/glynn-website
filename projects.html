@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Projects — POINT</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="carousel.css">
+</head>
+<body>
+
+<header class="site">
+  <a href="index.html" class="logo">POINT</a>
+  <a href="https://www.instagram.com/pointintl/" class="point-to" target="_blank" rel="noopener">
+    <span>POINT to</span>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".9" fill="currentColor" stroke="none"/></svg>
+  </a>
+</header>
+
+<main class="projects-page">
+  <h1>Projects</h1>
+  <div class="projects-grid" id="projects-grid"></div>
+</main>
+
+<footer>
+  <div class="brand">Point</div>
+  <p>© Point International</p>
+</footer>
+
+<script src="projects-data.js"></script>
+<script>
+  const grid = document.getElementById('projects-grid');
+  (window.PROJECTS || []).forEach(p => {
+    const cover = p.folder + p.images[0];
+    const a = document.createElement('a');
+    a.className = 'project-tile';
+    a.href = `projects/${p.slug}.html`;
+    a.innerHTML = `
+      <img src="${cover}" alt="${p.title.replace(/\n/g,' ')}">
+      <div class="tile-label">${p.title.replace(/\n/g,'<br>')}<span class="tile-count">${p.images.length} IMAGES</span></div>
+    `;
+    grid.appendChild(a);
+  });
+</script>
+</body>
+</html>

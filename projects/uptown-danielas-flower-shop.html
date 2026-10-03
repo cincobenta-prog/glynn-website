@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Uptown Daniela's Flower Shop — POINT</title>
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../carousel.css">
+<style>header.site{display:none}</style>
+</head>
+<body>
+
+<div class="stage" aria-label="Uptown Daniela's Flower Shop"></div>
+
+<script src="../projects-data.js"></script>
+<script>
+  const project = (window.PROJECTS || []).find(p => p.slug === 'uptown-danielas-flower-shop');
+  window.CAROUSEL_ITEMS = project.images.map((f, i) => ({
+    id: i,
+    title: i === 0 ? project.title : project.title + '\n' + String(i+1).padStart(2,'0'),
+    image: '../' + project.folder + f,
+    credit: project.credit,
+    meta: project.meta,
+    accent: project.accent
+  }));
+</script>
+<script src="../carousel.js"></script>
+</body>
+</html>
