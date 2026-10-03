@@ -66,6 +66,25 @@ form.inquiry textarea{min-height:140px;resize:vertical}
 form.inquiry button{grid-column:1 / -1;background:var(--ink);color:white;border:0;padding:16px 32px;letter-spacing:.2em;font-size:12px;text-transform:uppercase;font-weight:700;cursor:pointer;justify-self:start}
 form.inquiry button:hover{opacity:.8}
 
+/* About page layout — label column + content column */
+.about-page{max-width:1200px;margin:0 auto;padding:140px 32px 60px}
+.about-page h1.page-title{font-size:clamp(44px,6vw,80px);font-weight:800;letter-spacing:-.03em;margin-bottom:60px}
+.about-row{display:grid;grid-template-columns:200px 1fr;gap:40px;padding:40px 0;border-top:1px solid var(--line)}
+.about-row:first-of-type{border-top:0;padding-top:0}
+.about-row .label{font-size:14px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--ink)}
+.about-row .body p{font-size:17px;line-height:1.65;color:var(--ink);font-weight:300;margin-bottom:16px}
+.about-row .body p:last-child{margin-bottom:0}
+.capabilities-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px 40px}
+.capabilities-grid span{font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.clients-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:36px 32px;align-items:center;justify-items:center}
+.clients-grid img{max-width:120px;max-height:60px;width:auto;height:auto;object-fit:contain;filter:none}
+@media (max-width:720px){
+  .about-page{padding:100px 20px 40px}
+  .about-row{grid-template-columns:1fr;gap:12px;padding:28px 0}
+  .capabilities-grid{grid-template-columns:1fr;gap:14px}
+  .clients-grid{grid-template-columns:repeat(2,1fr);gap:28px 20px}
+}
+
 /* Footer */
 footer{padding:48px 32px 32px;border-top:1px solid var(--line);text-align:center}
 footer .brand{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
