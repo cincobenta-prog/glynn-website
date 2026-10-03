@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Info + Contact — POINT</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site">
+  <a href="index.html" class="logo">POINT</a>
+  <a href="https://www.instagram.com/pointintl/" class="point-to" target="_blank" rel="noopener">
+    <span>POINT to</span>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".9" fill="currentColor" stroke="none"/></svg>
+  </a>
+</header>
+
+<!-- Big navigation hero (Brands / About / Info + Contact) -->
+<section class="nav-hero">
+  <img class="bg" src="images/contact.jpg" alt="">
+  <div class="nav-list">
+    <a href="brands.html">Brands</a>
+    <a href="#about">About</a>
+    <a href="info-contact.html">Info + Contact</a>
+  </div>
+</section>
+
+<section class="info-section" id="about">
+  <h1 class="title">Info + Contact</h1>
+  <p class="subtitle">— About us, social media, and how to get up</p>
+  <hr>
+
+  <h3>About</h3>
+  <p>Born from the passions of like-minded individuals, Point believes in solving for the missing space in fashion, where traditional showrooms focus on volume in sales. We are here to manage the product lifecycle and allow a brand to live in the ecosystem without being thrust into an oversaturated market.</p>
+  <p>Enter Point, with over 20+ years of sales, brand marketing/positioning, and communications, Point can lead, support and strengthen a brand's position, narratives and much more.</p>
+
+  <h3 style="margin-top:40px">Follow</h3>
+  <a class="ig-link" href="https://www.instagram.com/pointintl/" target="_blank" rel="noopener">Instagram</a>
+</section>
+
+<section class="contact-section" id="contact">
+  <h2 class="title">General Inquiries</h2>
+  <h3 style="font-size:14px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:24px;font-weight:600">— Get at Us</h3>
+
+  <form class="inquiry" onsubmit="event.preventDefault();alert('Thanks — we\u2019ll be in touch.');this.reset();">
+    <label><span>First Name (required)</span><input type="text" required></label>
+    <label><span>Last Name (required)</span><input type="text" required></label>
+    <label class="full"><span>Email Address (required)</span><input type="email" required></label>
+    <label class="full"><span>Message (required)</span><textarea required></textarea></label>
+    <button type="submit">Submit</button>
+  </form>
+</section>
+
+<footer>
+  <div class="brand">Point</div>
+  <p>© Point International</p>
+</footer>
+
+</body>
+</html>
